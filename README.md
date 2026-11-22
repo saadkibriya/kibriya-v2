@@ -1,21 +1,30 @@
 # kibriya-v2
 
-Improved v2 of [saadkibriya.github.io](https://saadkibriya.github.io/) — the same person, rebuilt as one system.
+My personal site, rebuilt. One page for the four things I do — research, engineering, writing, photography — and a portfolio for each.
 
-**Live:** https://kibriya-v2-7730xa.freebuff.site
+**Live:** https://saadkibriya.github.io/kibriya-v2/
 
-## What it is
+The previous site ([saadkibriya.github.io](https://saadkibriya.github.io/)) is untouched.
 
-Plain static HTML, CSS and JS. No build step, no dependencies.
+## Pages
 
-- `index.html` — home: photo hero, socials, what is running in the background, four portfolios
-- `research/` — the Springer chapter, corrected record (87.50% test accuracy, DOI 10.1007/978-981-97-3966-0_6) and two works in progress
-- `engineering/` — timeline and real repositories
-- `writing/` — two stories, English and Bangla
-- `photography/` — Instagram archive
-- `style.css` — one design system; `theme.js` — theme, nav, reveal, copy-to-clipboard
+| Path | What it is |
+| --- | --- |
+| `index.html` | Home. Portrait, socials, what is running in the background, the four portfolios |
+| `research/` | The Springer chapter on federated learning for pox detection, plus two works in progress |
+| `engineering/` | Timeline, tools, and the repositories that are actually public |
+| `writing/` | Two short stories, one in English and one in Bangla |
+| `photography/` | Instagram archive and the gear it was shot on |
 
-## Run it
+## How it is built
+
+Plain HTML, CSS and JavaScript. No framework, no build step, no dependencies — GitHub Pages serves the files exactly as they are.
+
+- `style.css` — the whole design system: one type pairing (Newsreader + Inter), one dark/light theme, an accent colour per section
+- `theme.js` — saved theme, nav scroll state, scroll reveal, copy-to-clipboard, footer year
+- `home.js` — the small live widgets on the home page
+
+Run it locally:
 
 ```bash
 python3 -m http.server 8000
@@ -23,6 +32,14 @@ python3 -m http.server 8000
 
 Then open http://localhost:8000.
 
-## Fixed from v1
+## Facts on the site
 
-Self-reloading home links, a 404 story navigation path, a bare Springer URL, invented code samples and skill percentages, a dead lightbox, an unreachable mobile menu, and text below WCAG AA contrast.
+Every claim is checked against a primary source rather than a summary:
+
+- *Privacy-Preserving Vision-Based Detection of Pox Diseases Using Federated Learning*, Kibriya et al., Studies in Big Data vol. 152, Springer, 2024, pp. 105–122. DOI [10.1007/978-981-97-3966-0_6](https://doi.org/10.1007/978-981-97-3966-0_6). The chapter reports **87.50%** test accuracy, and the site quotes that number.
+- The 1,178 verified Bangla sentences belong to a separate corpus project, not to the chapter.
+- Code samples and skill percentages from the old site were removed; links point at real repositories instead.
+
+## Fixed from the old site
+
+Self-reloading home links, a 404 path from both stories, a bare Springer URL, invented code samples and made-up skill percentages, a dead lightbox, a mobile menu that could not be opened, and body text below WCAG AA contrast.
