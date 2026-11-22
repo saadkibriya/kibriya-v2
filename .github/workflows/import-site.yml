@@ -1,0 +1,45 @@
+name: import-site
+
+on: push
+
+permissions:
+  contents: write
+
+jobs:
+  import:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Fetch the deployed site
+        run: |
+          BASE="https://kibriya-v2-7730xa.freebuff.site"
+          for p in \
+            index.html \
+            research/index.html \
+            engineering/index.html \
+            writing/index.html \
+            photography/index.html \
+            writing/story-iblis.html \
+            writing/story-inheritance.html \
+            style.css \
+            theme.js \
+            home.js \
+            favicon.svg \
+            robots.txt \
+            sitemap.xml \
+            assets/hero.webp \
+            assets/playlist.webp; do
+            mkdir -p "$(dirname "$p")"
+            curl -fsSL "$BASE/$p" -o "$p"
+          done
+          touch .nojekyll
+
+      - name: Commit the files
+        run: |
+          git config user.name "Md Golam Kibriya"
+          git config user.email "meetkibriya@gmail.com"
+          git add -A
+          git commit -m "Update pages to the new site URL" || echo "nothing to commit"
+          git push
